@@ -1,0 +1,42 @@
+{
+  "name": "shopline-ai-suite",
+  "description": "A Codex plugin that provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
+  "version": "1.0.0",
+  "author": {
+    "name": "SHOPLINE"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "skills",
+    "plugin",
+    "shopline"
+  ],
+  "homepage": "https://github.com/shoplineos/shopline-ai-suite",
+  "repository": "https://github.com/shoplineos/shopline-ai-suite",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "SHOPLINE AI Suite",
+    "shortDescription": "SHOPLINE app and API development skills.",
+    "longDescription": "Provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
+    "developerName": "SHOPLINE",
+    "category": "Developer Tools",
+    "websiteURL": "https://developer.shopline.com",
+    "privacyPolicyURL": "https://www.shopline.com/privacy",
+    "termsOfServiceURL": "https://www.shopline.com/terms",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Help me build a SHOPLINE app.",
+      "Find the right SHOPLINE Admin API.",
+      "Validate a Storefront GraphQL query."
+    ],
+    "brandColor": "#0F6BFF",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": []
+  }
+}

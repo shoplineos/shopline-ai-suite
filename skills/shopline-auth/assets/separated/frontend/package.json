@@ -1,0 +1,16 @@
+{
+  "name": "shopline-app-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SHOPLINE App Frontend (Separated Architecture)",
+  "scripts": {
+    "build": "npx esbuild src/shopline-auth.js --bundle --outfile=public/js/shopline-auth.js --format=iife",
+    "dev": "npm run build && npx serve public"
+  },
+  "dependencies": {
+    "@shoplineos/app-bridge": "latest"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0"
+  }
+}
