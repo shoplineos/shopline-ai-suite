@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOPLINE App</title>
+</head>
+<body>
+  <div id="loading"><p>Loading...</p></div>
+  <div id="app" style="display:none;">
+    <h1>Welcome to SHOPLINE App</h1>
+    <p>Authorization successful. Your app is ready.</p>
+  </div>
+  <!-- App Bridge is already bundled inside shopline-auth.js via esbuild — do NOT load CDN separately -->
+  <script src="/js/shopline-auth.js"></script>
+  <script>
+    // Session token is now in an HttpOnly Secure cookie (not accessible via JS).
+    // Detect authenticated state by checking URL params from the backend redirect.
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('handle') && params.get('appkey') && params.get('uninstalled') !== 'true') {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
