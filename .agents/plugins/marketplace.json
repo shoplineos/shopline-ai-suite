@@ -1,0 +1,20 @@
+{
+  "name": "shopline-ai-suite",
+  "interface": {
+    "displayName": "SHOPLINE AI Suite"
+  },
+  "plugins": [
+    {
+      "name": "shopline-ai-suite",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/shoplineos/shopline-ai-suite.git"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

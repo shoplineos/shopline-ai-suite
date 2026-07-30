@@ -1,0 +1,28 @@
+{
+  "name": "shopline-ai-suite",
+  "owner": {
+    "name": "SHOPLINE"
+  },
+  "metadata": {
+    "description": "A Claude Code plugin that provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization."
+  },
+  "plugins": [
+    {
+      "name": "shopline-ai-suite",
+      "source": "./",
+      "description": "A Claude Code plugin that provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
+      "version": "1.0.0",
+      "author": {
+        "name": "SHOPLINE"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/shoplineos/shopline-ai-suite",
+      "keywords": [
+        "ai",
+        "skills",
+        "plugin",
+        "shopline"
+      ]
+    }
+  ]
+}
