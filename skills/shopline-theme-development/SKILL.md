@@ -7,28 +7,32 @@ description: Use this skill to build, debug, refactor, and validate SHOPLINE the
 
 You are an experienced SHOPLINE theme developer. Implement user requests by generating, modifying, debugging, and validating theme code that is consistent with the "Theme Architecture", "SLine Syntax", and "Basic Workflow" below.
 
-Keep this skill lean. For API references, detailed guides, editor setting definitions, runtime APIs, CLI command details, theme app extension rules, SEO, i18n, performance, or platform-specific behavior, retrieve the current documentation from MCP on demand.
+Keep this skill lean. For API references, detailed guides, editor setting definitions, runtime APIs, CLI command details, theme app extension rules, SEO, i18n, performance, or platform-specific behavior, search the current documentation with the bundled `scripts/search_docs.mjs` script on demand.
 
-## First-Use MCP Check
+## Documentation Search
 
-When this skill is first loaded or called in a session, check whether the current environment has a configured and available `shopline-developer-mcp` server for the `@shoplineos/shopline-developer-mcp` package.
+**Key principle: do not embed API or guide documentation in this skill. Search it when needed.**
 
-- If the MCP server is available, continue with the user's task.
-- If the MCP server is not available, do not continue with SHOPLINE theme development work yet. Tell the user to install or configure the SHOPLINE developer MCP server first, and include this link: https://www.npmjs.com/package/@shoplineos/shopline-developer-mcp
-- Run this check only once per session unless the MCP configuration changes or a later MCP call fails because the server is unavailable.
+Run the search command from the skill root:
 
-## MCP Documentation
+```bash
+node scripts/search_docs.mjs "<tag, object, filter, or focused topic>"
+```
 
-**Key principle: do not embed API or guide documentation in this skill. Fetch it when needed.**
+Use the `--help` option to view the script's command syntax and supported options:
 
-- MCP package/server: `@shoplineos/shopline-developer-mcp`
-- Use `@shoplineos/shopline-developer-mcp` on demand as the primary source for current SHOPLINE developer documentation.
-- Call this MCP whenever a task requires SLine `object`, `tag`, or `filter` details, including behavior, parameters, examples, return values, or edge cases.
-- Call this MCP for SHOPLINE theme development questions, including theme directory responsibilities, templates, layouts, sections, blocks, components, theme editor schema/settings, i18n, assets, CLI workflow, runtime APIs, SEO, performance, or theme app extension behavior.
-- Query MCP before using unfamiliar or task-critical SLine tags, objects, filters, schema settings, theme editor behavior, CLI commands, runtime APIs, or theme app extension capabilities.
-- Keep MCP queries scoped to the current task, such as one tag, object, filter, schema setting type, theme directory topic, or workflow at a time.
-- If MCP results conflict with existing theme code, prefer documented behavior first, then reconcile with local patterns.
-- If MCP cannot provide the needed detail, inspect nearby theme files and clearly state the assumption before changing code.
+```bash
+node scripts/search_docs.mjs --help
+```
+
+- Extract the relevant tag, object, filter, schema setting, API name, or theme topic from the user's request before searching.
+- Use focused identifiers or short topic phrases instead of passing the entire natural-language request verbatim. Search one topic at a time when possible.
+- Use `--max-results <number>` to limit the result count and `--json` when raw structured output is useful.
+- Search whenever a task requires SLine `object`, `tag`, or `filter` details, including behavior, parameters, examples, return values, or edge cases.
+- Search for SHOPLINE theme development questions involving theme directory responsibilities, templates, layouts, sections, blocks, components, theme editor schema/settings, i18n, assets, CLI workflow, runtime APIs, SEO, performance, or theme app extension behavior.
+- Search before using unfamiliar or task-critical SLine tags, objects, filters, schema settings, theme editor behavior, CLI commands, runtime APIs, or theme app extension capabilities.
+- If search results conflict with existing theme code, prefer documented behavior first, then reconcile with local patterns.
+- If the script is unavailable, fails, or does not provide the needed detail, inspect nearby theme files, clearly state the assumption, and disclose that documentation search was incomplete.
 
 ## Theme Architecture
 
@@ -98,7 +102,7 @@ When this skill is first loaded or called in a session, check whether the curren
 
 ## SLine Syntax
 
-**Key principles: use SLine for data output, control flow, composition, filtering, and schema definition. Tags and filters are internally implemented by SHOPLINE and cannot be custom-registered. Fetch exact tag/object/filter documentation from MCP when behavior matters.**
+**Key principles: use SLine for data output, control flow, composition, filtering, and schema definition. Tags and filters are internally implemented by SHOPLINE and cannot be custom-registered. Search exact tag/object/filter documentation with `scripts/search_docs.mjs` when behavior matters.**
 
 ### Output and Escaping
 
@@ -139,7 +143,7 @@ When this skill is first loaded or called in a session, check whether the curren
 - Use filters to modify output values.
 - Add filters inside `{{ }}` expressions or inside tag arguments after `|`.
 - Chain multiple filters from left to right.
-- Use the documented `filter_name(args)` call shape; confirm task-critical signatures through MCP.
+- Use the documented `filter_name(args)` call shape; confirm task-critical signatures with `scripts/search_docs.mjs`.
 
 ### Handles and Property Access
 
@@ -227,17 +231,16 @@ end
 - Use schema blocks to expose section or block configuration to the theme editor.
 - Keep schema JSON valid.
 - Keep schema setting IDs synchronized with render-time reads.
-- Fetch current setting types, required fields, and editor behavior from MCP before adding unfamiliar controls.
+- Search current setting types, required fields, and editor behavior with `scripts/search_docs.mjs` before adding unfamiliar controls.
 
 ## Basic Workflow
 
-1. On the first use of this skill in the current session, perform the "First-Use MCP Check" above.
-2. Classify the task as structure, rendering, editor configuration, SLine syntax/API usage, i18n, assets, CLI workflow, or validation.
-3. Inspect the smallest relevant set of local theme files before editing.
-4. For SLine object/tag/filter details or SHOPLINE theme development questions, query `@shoplineos/shopline-developer-mcp` before implementation; otherwise fetch MCP details only when the task needs them.
-5. Follow the existing theme's naming, file organization, schema style, CSS style, and JavaScript style.
-6. Keep changes scoped to the requested behavior and its required schema, template, translation, and asset updates.
-7. Validate changed SLine, JSON, and theme structure before final delivery.
+1. Classify the task as structure, rendering, editor configuration, SLine syntax/API usage, i18n, assets, CLI workflow, or validation.
+2. Inspect the smallest relevant set of local theme files before editing.
+3. For SLine object/tag/filter details or SHOPLINE theme development questions, run `node scripts/search_docs.mjs "<focused query>"` before implementation; otherwise search only when the task needs current documentation.
+4. Follow the existing theme's naming, file organization, schema style, CSS style, and JavaScript style.
+5. Keep changes scoped to the requested behavior and its required schema, template, translation, and asset updates.
+6. Validate changed SLine, JSON, and theme structure before final delivery.
 
 ## Validation
 

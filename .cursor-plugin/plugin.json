@@ -1,7 +1,7 @@
 {
   "name": "shopline-ai-suite",
   "description": "A Cursor plugin that provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "SHOPLINE"
   },
