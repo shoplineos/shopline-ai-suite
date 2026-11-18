@@ -4,6 +4,17 @@ Developer skills for building with SHOPLINE across docs search, Admin REST APIs,
 
 SHOPLINE AI Suite is a GitHub-hosted skill repository designed for AI coding agents and plugin-based developer tools. It provides packaged SHOPLINE skills that help agents search current documentation, work with API schemas, and validate GraphQL code with better grounding and lower hallucination risk.
 
+## Usage statistics
+
+Usage statistics are enabled by default to help improve SHOPLINE developer tools and documentation. They include which Skills you use, your plugin and AI tool versions, model name, and invocation details. **Your prompt text and session IDs are not collected.**
+
+You can disable usage statistics in either of these ways:
+
+- Set `SHOPLINE_AI_TELEMETRY_DISABLED=1` in your AI tool's environment, then restart the tool.
+- Set `"enabled": false` in `~/.shopline-ai-suite/telemetry-config.json`. If the file does not exist, create it with `{ "enabled": false }`.
+
+Disabling statistics stops future reporting; it does not delete previously reported data.
+
 ## Install
 
 ### Claude Code

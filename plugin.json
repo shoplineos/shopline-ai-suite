@@ -1,7 +1,7 @@
 {
   "name": "shopline-ai-suite",
   "description": "Provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "SHOPLINE"
   },
@@ -19,10 +19,5 @@
     "displayName": "SHOPLINE AI Suite",
     "shortDescription": "SHOPLINE app and API development skills.",
     "developerName": "SHOPLINE"
-  },
-  "entrypoints": {
-    "codex": ".codex-plugin/plugin.json",
-    "claudeCode": ".claude-plugin/plugin.json",
-    "cursor": ".cursor-plugin/plugin.json"
   }
 }

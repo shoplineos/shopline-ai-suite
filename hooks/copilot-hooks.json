@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "node \"${PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs\" --client-name github-copilot --hook-source plugin",
+        "powershell": "node \"${PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs\" --client-name github-copilot --hook-source plugin",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}

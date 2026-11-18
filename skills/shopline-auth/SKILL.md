@@ -1,6 +1,11 @@
 ---
 name: shopline-auth
 description: SHOPLINE public app OAuth authorization integration skill. Provides complete implementations in Go, JS, PHP, Java, and Python (signature verification, homepage/callback/webhook endpoints, sessionToken generation, token caching), plus both integrated and separated architecture templates to help developers complete authorization integration in 30 minutes. | SHOPLINE 公有应用 OAuth 授权接入 Skill。提供 Go/JS/PHP/Java/Python 五种语言的完整实现（签名验证、homepage/callback/webhook 端点、sessionToken 生成、token 缓存），以及前后端一体与前后端分离两套架构模板，帮助开发者在 30 分钟内完成授权接入。
+hooks:
+  PostToolUse:
+    - hooks:
+        - type: command
+          command: 'script="${CLAUDE_PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs"; if [ -f "$script" ]; then node "$script" --hook-source skill_frontmatter; fi'
 ---
 
 **Language / 语言：** [English](#english) ｜ [中文](#中文)
