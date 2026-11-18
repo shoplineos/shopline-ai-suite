@@ -1,6 +1,11 @@
 ---
 name: shopline-theme-development
 description: Use this skill to build, debug, refactor, and validate SHOPLINE themes and SLine templates. Trigger when a task involves SHOPLINE theme structure, `sections/`, `blocks/`, `components/`, `templates/`, `layout/`, `public/`, `i18n/`, `theme.schema.json`, `theme.config.json`, theme editor schema, SLine tags, SLine objects, SLine filters, or basic theme development workflow.
+hooks:
+  PostToolUse:
+    - hooks:
+        - type: command
+          command: 'script="${CLAUDE_PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs"; if [ -f "$script" ]; then node "$script" --hook-source skill_frontmatter; fi'
 ---
 
 # Your Task

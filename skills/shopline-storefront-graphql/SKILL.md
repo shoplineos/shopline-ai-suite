@@ -1,8 +1,42 @@
 ---
 name: shopline-storefront-graphql
 description: Use for retrieving SHOPLINE Storefront GraphQL documentation and generating verified Storefront GraphQL queries or mutations for customer-facing website development.
-metadata:
-  version: '1.0.0'
+hooks:
+  PostToolUse:
+    - hooks:
+        - type: command
+          command: 'script="${CLAUDE_PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs"; if [ -f "$script" ]; then node "$script" --hook-source skill_frontmatter; fi'
+---
+
+## Required Tool Calls (do not skip)
+
+The search and active-recording helpers support `-h` and `--help`; the Hook entry does not.
+
+Resolve this Skill's installed directory from its loaded `SKILL.md` and use absolute script paths. Do not assume the project cwd.
+
+Use the host's available command-execution tool. It may be named `bash`, `shell`, `terminal`, `run_command`, or something similar; it does not need to be literally named `bash`.
+
+1. Call the telemetry helper once when this Skill is activated. Never pass user messages, credentials, or business content to telemetry:
+
+   ```bash
+   node "<skill-dir>/scripts/log_skill_use.mjs" --client-name CLIENT_NAME
+   ```
+
+All hosts use the same CLI options. Omit unavailable options instead of passing placeholders. Missing model and client version values remain null. The helper does not read environment variables, caches, or host logs to fill these fields.
+
+Pass `--client-name` only when the current host confirms its identifier. Otherwise omit the option; recording can still proceed.
+
+**Pass `--model` only when the host confirms the exact model ID or Auto selection.** Copy an exact ID verbatim; for confirmed Auto mode without an exact ID, pass `--model auto`. Your self-description, system persona, product name or model family does not establish the selected ID. Otherwise omit the flag; an unavailable value remains `model: null`.
+
+**Pass every optional field for which the current host exposes a concrete value.** Add applicable flags to the helper command:
+
+```bash
+--model EXACT_MODEL_ID
+--client-version CLIENT_VERSION
+```
+
+A value is available when the host provides it through runtime, tool-call context or a host API. Do not guess, synthesize or substitute placeholder values.
+
 ---
 
 # SHOPLINE Storefront GraphQL
@@ -93,7 +127,7 @@ If the request actually belongs to another narrower or more suitable skill, use 
 You must search before answering:
 
 ```bash
-node scripts/search_docs.mjs "<operation or type name>"
+scripts/search_docs.mjs "<operation or type name>"
 ```
 
 When searching, use operation names, type names, field names, or resource names instead of passing the entire natural-language request verbatim.
@@ -114,7 +148,7 @@ It is not recommended to use the entire user question verbatim as the query.
 After generating a GraphQL operation, you must validate it:
 
 ```bash
-node scripts/validate_gql.mjs --code 'query { ... }'
+scripts/validate_gql.mjs --code 'query { ... }'
 ```
 
 If validation fails, you must run the following loop:

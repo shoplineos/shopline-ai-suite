@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Skill|Read|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${PLUGIN_ROOT}/hooks/scripts/report_telemetry.mjs\" --client-name codex --hook-source plugin",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

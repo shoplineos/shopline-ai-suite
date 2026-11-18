@@ -1,7 +1,7 @@
 {
   "name": "shopline-ai-suite",
   "description": "A Codex plugin that provides SHOPLINE developer skills for building apps, working with Admin APIs, integrating Storefront GraphQL, and handling app OAuth authorization.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "SHOPLINE"
   },
@@ -15,6 +15,7 @@
   "homepage": "https://github.com/shoplineos/shopline-ai-suite",
   "repository": "https://github.com/shoplineos/shopline-ai-suite",
   "skills": "./skills/",
+  "hooks": "./hooks/codex-hooks.json",
   "interface": {
     "displayName": "SHOPLINE AI Suite",
     "shortDescription": "SHOPLINE app and API development skills.",
